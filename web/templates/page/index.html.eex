@@ -1,0 +1,8 @@
+<div id="messages">
+  <%= for message <- @messages do %>
+    &lt;<%= message.author %>&gt; <%= message.body %><br>
+  <% end %>
+</div>
+
+<input id="author-input" type="text" placeholder="Guest">
+<input id="chat-input" type="text" size="70">
