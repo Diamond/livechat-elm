@@ -3,7 +3,7 @@ defmodule Livechat.Mixfile do
 
   def project do
     [app: :livechat,
-     version: "0.0.2",
+     version: "0.0.3",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix] ++ Mix.compilers,

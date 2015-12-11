@@ -84,15 +84,23 @@ form.link, form.button {
   margin-bottom: 20px;
 }
 
-body {
+/*body {
   background: url("/images/elm-tree-bg.png") no-repeat;
-}
+}*/
 
 #main-body {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   padding: 20px;
 }
 
 .message {
   margin-bottom: 2px;
+}
+
+body {
+  background: url(/images/elm-tree-bg.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
