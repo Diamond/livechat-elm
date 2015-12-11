@@ -53,33 +53,29 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 socket.connect()
 
+// Load Elm into our app
+let elmDiv = document.querySelector('#elm-container');
+let elmApp = Elm.embed(Elm.LiveChat, elmDiv, { incomingMessages: "" });
+
+// Prepopulate our message list
+$.each($(".load-message"), (index, element) => {
+  elmApp.ports.incomingMessages.send($(element).val())
+});
+
 // Now that you are connected, you can join channels with a topic:
 let channel = socket.channel("rooms:lobby", {})
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
-let chatInput = $("#chat-input")
-let authorInput = $("#author-input")
-let messagesContainer = $("#messages")
+// Set up the response when Elm broadcasts a new message
+elmApp.ports.outgoingMessage.subscribe(message => {
+  channel.push("new_msg", {author: "", body: message});
+});
 
-let htmlEntities = str => {
-  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-}
-
-chatInput.on("keypress", event => {
-  if (event.keyCode === 13) {
-    let author = (authorInput.val() === "" ? "Guest" : authorInput.val())
-    let body = htmlEntities(chatInput.val())
-    channel.push("new_msg", { author: author, body: body })
-    chatInput.val("")
-  }
-})
-
+// And tell Elm when we've received a new message
 channel.on("new_msg", payload => {
-  messagesContainer.append(`&lt;${payload.author}&gt; ${payload.body}<br>`)
+  elmApp.ports.incomingMessages.send(payload.body);
 })
-
-
 
 export default socket

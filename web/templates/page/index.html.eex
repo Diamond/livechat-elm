@@ -1,8 +1,5 @@
-<div id="messages">
-  <%= for message <- @messages do %>
-    &lt;<%= message.author %>&gt; <%= message.body %><br>
-  <% end %>
-</div>
+<div id="elm-container"></div>
 
-<input id="author-input" type="text" placeholder="Guest">
-<input id="chat-input" type="text" size="70">
+<%= for message <- @messages do %>
+  <input type="hidden" class="load-message" value="<%= message.body %>">
+<% end %>
