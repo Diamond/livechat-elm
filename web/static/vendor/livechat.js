@@ -10340,38 +10340,43 @@ Elm.LiveChat.make = function (_elm) {
    function (v) {
       return typeof v === "string" || typeof v === "object" && v instanceof String ? v : _U.badPort("a string",v);
    });
-   var message = function (msg) {    return A2($Html.li,_U.list([$Html$Attributes.$class("message")]),_U.list([$Html.text(msg)]));};
+   var message = function (msg) {    return A2($Html.div,_U.list([$Html$Attributes.$class("message col-xs-12")]),_U.list([$Html.text(msg)]));};
    var Send = {ctor: "Send"};
    var UpdateAuthor = function (a) {    return {ctor: "UpdateAuthor",_0: a};};
    var UpdateMessage = function (a) {    return {ctor: "UpdateMessage",_0: a};};
    var entryForm = F2(function (address,model) {
       return A2($Html.div,
-      _U.list([$Html$Attributes.$class("chat-form")]),
-      _U.list([A2($Html.input,
+      _U.list([$Html$Attributes.$class("chat-form row")]),
+      _U.list([A2($Html.div,
+              _U.list([$Html$Attributes.$class("col-xs-2")]),
+              _U.list([A2($Html.input,
               _U.list([$Html$Attributes.type$("text")
                       ,$Html$Attributes.placeholder("Guest")
-                      ,$Html$Attributes.$class("author-entry")
+                      ,$Html$Attributes.$class("author-entry form-control col-xs-2")
                       ,$Html$Attributes.value(model.author)
                       ,A3($Html$Events.on,"input",$Html$Events.targetValue,function (_p0) {    return A2($Signal.message,address,UpdateAuthor(_p0));})
                       ,$Html$Attributes.id("author-input")]),
-              _U.list([]))
-              ,A2($Html.input,
+              _U.list([]))]))
+              ,A2($Html.div,
+              _U.list([$Html$Attributes.$class("col-xs-8")]),
+              _U.list([A2($Html.input,
               _U.list([$Html$Attributes.type$("text")
                       ,$Html$Attributes.placeholder("Enter your message here...")
-                      ,$Html$Attributes.$class("message-entry")
+                      ,$Html$Attributes.$class("message-entry form-control")
                       ,$Html$Attributes.value(model.newMessage)
                       ,A3($Html$Events.on,"input",$Html$Events.targetValue,function (_p1) {    return A2($Signal.message,address,UpdateMessage(_p1));})
-                      ,$Html$Attributes.id("chat-input")
-                      ,$Html$Attributes.size(70)]),
-              _U.list([]))
-              ,A2($Html.button,_U.list([A2($Html$Events.onClick,address,Send)]),_U.list([$Html.text("Send")]))]));
+                      ,$Html$Attributes.id("chat-input")]),
+              _U.list([]))]))
+              ,A2($Html.div,
+              _U.list([$Html$Attributes.$class("col-xs-2 text-right")]),
+              _U.list([A2($Html.button,
+              _U.list([$Html$Attributes.$class("btn btn-primary"),A2($Html$Events.onClick,address,Send)]),
+              _U.list([$Html.text("Send")]))]))]));
    });
    var view = F2(function (address,model) {
       return A2($Html.div,
       _U.list([$Html$Attributes.$class("display-chat")]),
-      _U.list([A2($Html.h2,_U.list([$Html$Attributes.$class("banner")]),_U.list([$Html.text("LiveChat")]))
-              ,A2($Html.ul,_U.list([$Html$Attributes.$class("chat-log")]),A2($List.map,message,model.messages))
-              ,A2(entryForm,address,model)]));
+      _U.list([A2($Html.div,_U.list([$Html$Attributes.$class("chat-log row col-xs-12")]),A2($List.map,message,model.messages)),A2(entryForm,address,model)]));
    });
    var Add = function (a) {    return {ctor: "Add",_0: a};};
    var NoOp = {ctor: "NoOp"};

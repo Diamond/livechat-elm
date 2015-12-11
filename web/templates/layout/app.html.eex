@@ -7,18 +7,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Phoenix!</title>
+    <title>Elm Chat!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <div class="container" role="main">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-        </ul>
-        <span class="logo"></span>
-      </div>
+    <div id="main-body" class="container" role="main">
+      <header class="row" id="headerBar">
+        <div class="col-xs-2 col-xs-offset-3">
+          <span class="logo"></span>
+        </div>
+        <div class="col-xs-4">
+          <h1>Elm Chat</h1>
+        </div>
+      </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

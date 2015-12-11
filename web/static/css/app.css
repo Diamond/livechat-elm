@@ -25,12 +25,12 @@ form.link, form.button {
   border-bottom: 1px solid #e5e5e5;
 }
 .logo {
-  width: 519px;
+  width: 71px;
   height: 71px;
   display: inline-block;
   margin-bottom: 1em;
-  background-image: url("/images/phoenix.png");
-  background-size: 519px 71px;
+  background-image: url("/images/elm_logo_mono.png");
+  background-size: 71px 71px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -77,4 +77,22 @@ form.link, form.button {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+.chat-log {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+body {
+  background: url("/images/elm-tree-bg.png") no-repeat;
+}
+
+#main-body {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+}
+
+.message {
+  margin-bottom: 2px;
 }

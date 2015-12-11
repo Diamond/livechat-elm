@@ -39,38 +39,40 @@ update action model =
 -- VIEW
 message : String -> Html
 message msg =
-  li [ class "message" ] [ text msg ]
+  div [ class "message col-xs-12" ] [ text msg ]
 
 entryForm : Signal.Address Action -> Model -> Html
 entryForm address model =
-  div [ class "chat-form" ] [
-    input [
-      type' "text",
-      placeholder "Guest",
-      class "author-entry",
-      value model.author,
-      on "input" targetValue (Signal.message address << UpdateAuthor),
-      id "author-input"
-    ] [ ],
-    input [
-      type' "text",
-      placeholder "Enter your message here...",
-      class "message-entry",
-      value model.newMessage,
-      on "input" targetValue (Signal.message address << UpdateMessage),
-      id "chat-input",
-      size 70
-    ] [ ],
-    button [ onClick address Send ] [
-      text "Send"
+  div [ class "chat-form row" ] [
+    div [ class "col-xs-2"] [
+      input [
+        type' "text",
+        placeholder "Guest",
+        class "author-entry form-control col-xs-2",
+        value model.author,
+        on "input" targetValue (Signal.message address << UpdateAuthor),
+        id "author-input"
+      ] [ ]
+    ],
+    div [ class "col-xs-8" ] [
+      input [
+        type' "text",
+        placeholder "Enter your message here...",
+        class "message-entry form-control",
+        value model.newMessage,
+        on "input" targetValue (Signal.message address << UpdateMessage),
+        id "chat-input"
+      ] [ ]
+    ],
+    div [ class "col-xs-2 text-right" ] [
+      button [ class "btn btn-primary", onClick address Send ] [ text "Send" ]
     ]
   ]
 
 view : Signal.Address Action -> Model -> Html
 view address model =
   div [ class "display-chat" ] [
-    h2 [ class "banner" ] [ text "LiveChat" ],
-    ul [ class "chat-log" ] (List.map message model.messages),
+    div [ class "chat-log row col-xs-12" ] (List.map message model.messages),
     entryForm address model
   ]
 

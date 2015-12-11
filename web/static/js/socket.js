@@ -54,8 +54,10 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Load Elm into our app
-let elmDiv = document.querySelector('#elm-container');
-let elmApp = Elm.embed(Elm.LiveChat, elmDiv, { incomingMessages: "" });
+let elmDiv = document.querySelector('#elm-container')
+let elmApp = Elm.embed(Elm.LiveChat, elmDiv, { incomingMessages: "" })
+
+$("#chat-input").focus()
 
 // Prepopulate our message list
 $.each($(".load-message"), (index, element) => {
