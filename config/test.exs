@@ -11,8 +11,8 @@ config :logger, level: :warn
 
 # Configure your database
 config :livechat, Livechat.Repo,
-  adapter: Ecto.Adapters.MySQL,
-  username: "root",
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
   password: "",
   database: "livechat_test",
   hostname: "localhost",

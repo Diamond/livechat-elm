@@ -34,8 +34,8 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :livechat, Livechat.Repo,
-  adapter: Ecto.Adapters.MySQL,
-  username: "root",
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
   password: "",
   database: "livechat_dev",
   hostname: "localhost",
